@@ -1,20 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  font-family: 'Bowlby One SC', cursive;
+  font-size: 14px;
+  background: #292f33;
+  text-align: center;
+  box-sizing: border-box;
 }
-
-ol, ul {
-  padding-left: 30px;
+button{
+  font-family: 'Heebo', sans-serif;
+  font-family: 'Bowlby One SC', cursive;
 }
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
+.square:focus {
+  outline: none;
 }
 
 .square {
@@ -31,20 +28,34 @@ ol, ul {
   text-align: center;
   width: 34px;
 }
-
-.square:focus {
-  outline: none;
+.board-container {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 525px;
 }
 
+.board-container .square {
+  background: #1e1e1e;
+  width: 150px;
+  height: 142px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 125px;
+  font-weight: bold;
+  padding-top: 8px;
+  color: #fb714d;
+  border: none;
+  border-radius: 21px;
+  background: #292f33;
+  box-shadow:  -6px -6px 12px #141718, 
+              6px 6px 12px #3e474e;
+}
 .kbd-navigation .square:focus {
   background: #ddd;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
-}
