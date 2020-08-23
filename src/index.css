@@ -56,20 +56,23 @@ button{
               6px 6px 12px #3e474e;
 }
 .board-container .square:hover, .board-container .square:hover:active {
-  background: #bccbd3;
-  background: #353c40;
   background: #212629;
   cursor: pointer;
 }
 .board-container .square:active{
-  /* background: #282828;*/
   cursor: pointer;
   border-radius: 21px;
-  background: #c5d1d8;
-  box-shadow: inset -6px -6px 13px #dce4e9, inset 2px 5px 9px rgba(0, 0, 0, 0.4);
-background: #292f33;
-box-shadow: inset -6px -6px 12px #141718, 
+  background: #292f33;
+  box-shadow: inset -6px -6px 12px #141718, 
             inset 6px 6px 12px #3e474e;
+}
+.board-container .square.active{
+  background: #292f33;
+  box-shadow: inset -6px -6px 12px #141718, 
+            inset 6px 6px 12px #3e474e;
+}
+.teal{
+  color: #00cbd7 !important;
 }
 
 .choosePlayer {
