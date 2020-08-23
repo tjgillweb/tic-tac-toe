@@ -9,7 +9,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       human: '',
-      AI: '',
+      AI: '', //Artificial Intelligence(computer)
     };
   }
 

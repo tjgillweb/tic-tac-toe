@@ -18,8 +18,8 @@ class Board extends React.Component {
     }
 
     const opponentMove = this.calculateOpponentMove(i)
-    squares[i] = numSquares[i] = 'X';
-    squares[opponentMove] = numSquares[opponentMove] = 'O';
+    squares[i] = numSquares[i] = this.props.human;
+    squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
 
     this.setState({
       squares: squares,
