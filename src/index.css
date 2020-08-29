@@ -30,7 +30,7 @@ button{
 }
 .board-container {
   margin: 50px auto;
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;

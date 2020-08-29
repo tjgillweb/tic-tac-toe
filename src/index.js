@@ -20,15 +20,20 @@ class Game extends React.Component {
             human: "X",
             AI: "O"
           });
-          document.querySelector(".choosePlayer").style.display = "none";
+          this.setDisplayProperty();
         }
         else if (choice === "O") {
           this.setState({
             human: "O",
             AI: "X"
           });
-          document.querySelector(".choosePlayer").style.display = "none";
+          this.setDisplayProperty();
         }
+    }
+
+    setDisplayProperty() {
+      document.querySelector(".choosePlayer").style.display = "none";
+      document.querySelector(".board-container").style.display = "flex";
     }
   
   render() {
