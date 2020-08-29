@@ -19,13 +19,23 @@ class Board extends React.Component {
 
     const opponentMove = this.calculateOpponentMove(i)
     squares[i] = numSquares[i] = this.props.human;
-    squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
-
     this.setState({
       squares: squares,
       numSquares: numSquares,
     });
     
+    const setOpponentMove = () => {
+      setTimeout(function() { // set a delay in the appearance of the opponent move 
+        squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
+
+        this.setState({
+          squares: squares,
+          numSquares: numSquares,
+        });
+
+      }.bind(this),250); 
+    }
+		setOpponentMove();
   }
 
   calculateOpponentMove(i){
