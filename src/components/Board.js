@@ -9,6 +9,7 @@ class Board extends React.Component {
       squares: Array(9).fill(null),
       numSquares: [0,1,2,3,4,5,6,7,8],
       winner: '',
+      turn: 1,
     };
   }
 
@@ -25,9 +26,15 @@ class Board extends React.Component {
     this.setState({
       squares: squares,
       numSquares: numSquares,
-      winner: winner,
+      turn: this.state.turn + 1
     });
-    
+    const winnerAfterSetState = this.calculateWinner(squares)
+        if(this.state.turn === 5 && winnerAfterSetState === null)
+        {
+            this.setState({winner: 'tie'})
+            return
+        }
+    console.log(this.state.turn)
     const setOpponentMove = () => {
       setTimeout(function() { // set a delay in the appearance of the opponent move 
         squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
@@ -36,11 +43,10 @@ class Board extends React.Component {
           squares: squares,
           numSquares: numSquares,
           winner: winner
-        });
+        });    
       }.bind(this),250); 
     }
 		setOpponentMove();
-    console.log(this.state.winner)
   }
 
   calculateOpponentMove(i){
@@ -103,17 +109,8 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = this.calculateWinner(this.state.squares)
-    let status = ''
-    if(winner){
-      status = winner + "wins"
-    }
-    else{
-      status = "Game tied"
-    }
     return (
       <>
-        <div>{status}</div>
         <div className="board-container">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
