@@ -9,15 +9,23 @@ class Board extends React.Component {
       squares: Array(9).fill(null),
       numSquares: [0,1,2,3,4,5,6,7,8],
       winner: '',
-      turn: 1,
+      turn: 1, //to calculate if the game is tied
+      winnerLine: [] // to highlight the boxes of winning X's or O's
     };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
     const numSquares = this.state.numSquares.slice();
-    const winner = this.calculateWinner(squares);
-    if (this.calculateWinner(squares) || squares[i]) {
+    // const winner = this.calculateWinner(squares);
+    // if (this.calculateWinner(squares) || squares[i]) {
+    //   return;
+    // }
+
+    if(this.calculateWinner(squares) !== null){
+      var [winner, winnerLine] = this.calculateWinner(squares)
+    }
+    if (winner || squares[i]) {
       return;
     }
 
@@ -34,16 +42,49 @@ class Board extends React.Component {
         this.setState({winner: 'tie'})
         return
     }
+    else
+    {   
+        if(this.calculateWinner(squares) !== null){
+          const [winner, winnerLine] = this.calculateWinner(squares);
+          this.setState({
+          winner: winner,
+          winnerLine: winnerLine
+          })
+        }
+        else{
+          this.setState({
+          winner: winnerAfterSetState,
+          })
+        }    
+    }
     console.log(this.state.turn)
     const setOpponentMove = () => {
-      setTimeout(function() { // set a delay in the appearance of the opponent move 
+      setTimeout(function() { // set a delay in the appearance of the opponent move
+        if(this.calculateWinner(squares) !== null){
+            var [winner, winnerLine] = this.calculateWinner(squares)
+          }
+        if (winner) {
+          return;
+        } 
         squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
-        const winner = this.calculateWinner(squares);
         this.setState({
           squares: squares,
           numSquares: numSquares,
           winner: winner
-        });    
+        });
+        const winnerAfterSetState = this.calculateWinner(squares)
+        if(this.calculateWinner(squares) !== null){
+            const [winner, winnerLine] = this.calculateWinner(squares);
+            this.setState({
+            winner: winner,
+            winnerLine: winnerLine
+            })
+          }
+        else{
+          this.setState({
+          winner: winnerAfterSetState,
+          })
+        }   
       }.bind(this),250); 
     }
 		setOpponentMove();
@@ -92,7 +133,8 @@ class Board extends React.Component {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+        //return squares[a];
+        return [ squares[a], lines[i] ]
       }
     }
     return null;
@@ -112,9 +154,11 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square 
+        id={i}
         value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
         AI = {this.props.AI}
+        winnerLine = {this.state.winnerLine}
+        onClick={() => this.handleClick(i)}
       />
     );
   }
