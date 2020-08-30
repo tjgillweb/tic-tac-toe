@@ -74,7 +74,9 @@ button{
 .teal{
   color: #00cbd7 !important;
 }
-
+.winnerLine {
+  border: 10px solid #e1e1e1 !important;
+}
 .choosePlayer {
   position: absolute;
   left: 0;
