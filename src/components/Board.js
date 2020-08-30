@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square'
+import DisplayResult from './DisplayResult'
 
 class Board extends React.Component {
   constructor(props) {
@@ -7,12 +8,14 @@ class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       numSquares: [0,1,2,3,4,5,6,7,8],
+      winner: '',
     };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
     const numSquares = this.state.numSquares.slice();
+    const winner = this.calculateWinner(squares);
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -22,20 +25,22 @@ class Board extends React.Component {
     this.setState({
       squares: squares,
       numSquares: numSquares,
+      winner: winner,
     });
     
     const setOpponentMove = () => {
       setTimeout(function() { // set a delay in the appearance of the opponent move 
         squares[opponentMove] = numSquares[opponentMove] = this.props.AI;
-
+        const winner = this.calculateWinner(squares);
         this.setState({
           squares: squares,
           numSquares: numSquares,
+          winner: winner
         });
-
       }.bind(this),250); 
     }
 		setOpponentMove();
+    console.log(this.state.winner)
   }
 
   calculateOpponentMove(i){
@@ -98,26 +103,36 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = this.calculateWinner(this.state.squares);
-
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const winner = this.calculateWinner(this.state.squares)
+    let status = ''
+    if(winner){
+      status = winner + "wins"
+    }
+    else{
+      status = "Game tied"
     }
     return (
-      <div className="board-container">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-      </div>
+      <>
+        <div>{status}</div>
+        <div className="board-container">
+            {this.renderSquare(0)}
+            {this.renderSquare(1)}
+            {this.renderSquare(2)}
+            {this.renderSquare(3)}
+            {this.renderSquare(4)}
+            {this.renderSquare(5)}
+            {this.renderSquare(6)}
+            {this.renderSquare(7)}
+            {this.renderSquare(8)}
+        </div>
+
+        {(this.state.winner) ? <DisplayResult
+            result= {this.state.winner}
+            replay = {this.replay} 
+            human = {this.props.human}
+            AI = {this.props.AI}
+        /> : null }
+      </>
     );
   }
 }
