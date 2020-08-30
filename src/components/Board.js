@@ -139,6 +139,7 @@ class Board extends React.Component {
             replay = {this.replay} 
             human = {this.props.human}
             AI = {this.props.AI}
+            waitBeforeShow={1200}
         /> : null }
       </>
     );

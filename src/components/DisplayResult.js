@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 
-class Result extends Component {
+class DisplayResult extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			hidden : true
+		};
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({hidden: false});
+			document.querySelector(".board-container").style.opacity = 0.05;
+        }, this.props.waitBeforeShow);
+    }
 
 	render() {
 		let result = ''
@@ -15,7 +28,7 @@ class Result extends Component {
 			}
 
 		return (
-				<div className = "displayResult">
+				(this.state.hidden) ? '' : <div className = "displayResult">
 					<h1>{result}</h1>
 					<button className = "replay" onClick = {this.props.replay}>Play again ?</button>
 				</div> 
@@ -23,4 +36,4 @@ class Result extends Component {
 	}
 }
 
-export default Result
+export default DisplayResult
