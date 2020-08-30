@@ -148,7 +148,7 @@ class Board extends React.Component {
       turn: 1,
     }); 
     document.querySelector(".choosePlayer").style.display = "block";
-    document.querySelector(".board-container").style.opacity = 1;
+    document.querySelector(".board-container").style.display = "block";
     document.querySelector(".board-container").style.display = "none";
   }
   renderSquare(i) {

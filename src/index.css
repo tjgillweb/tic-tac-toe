@@ -194,4 +194,13 @@ button{
     font-size: 5rem;
     margin: 10px;
   }
+  .displayResult h1{
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+  }
+  .displayResult .replay{
+    font-size: 2rem;
+    line-height: 2rem;
+    padding: 1rem 1.2rem;
+  }
 }

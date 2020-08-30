@@ -11,7 +11,7 @@ class DisplayResult extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.setState({hidden: false});
-			document.querySelector(".board-container").style.opacity = 0.05;
+			document.querySelector(".board-container").style.display = "none";
         }, this.props.waitBeforeShow);
     }
 
