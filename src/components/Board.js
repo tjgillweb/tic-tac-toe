@@ -29,11 +29,11 @@ class Board extends React.Component {
       turn: this.state.turn + 1
     });
     const winnerAfterSetState = this.calculateWinner(squares)
-        if(this.state.turn === 5 && winnerAfterSetState === null)
-        {
-            this.setState({winner: 'tie'})
-            return
-        }
+    if(this.state.turn === 5 && winnerAfterSetState === null)
+    {
+        this.setState({winner: 'tie'})
+        return
+    }
     console.log(this.state.turn)
     const setOpponentMove = () => {
       setTimeout(function() { // set a delay in the appearance of the opponent move 
@@ -98,6 +98,17 @@ class Board extends React.Component {
     return null;
   }
 
+  replay = () => {
+    this.setState({
+      squares: Array(9).fill(null),
+      numSquares: [0,1,2,3,4,5,6,7,8],
+      winner: '',
+      turn: 1,
+    }); 
+    document.querySelector(".choosePlayer").style.display = "block";
+    document.querySelector(".board-container").style.opacity = 1;
+    document.querySelector(".board-container").style.display = "none";
+  }
   renderSquare(i) {
     return (
       <Square 
