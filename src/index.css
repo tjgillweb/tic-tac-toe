@@ -204,6 +204,19 @@ button{
     padding: 1rem 1.2rem;
   }
   .board-container{
+    width: 360px;
+  }
+  .board-container .square{
+    font-size: 60px;
+    border-radius: 10px;
+    padding-top: 2px;
+    width: 95px;
+    height: 85px;
+    margin: 6px;
+  }
+}
+@media (max-width: 359px){
+  .board-container{
     width: 300px;
   }
   .board-container .square{
