@@ -214,6 +214,13 @@ button{
     height: 85px;
     margin: 6px;
   }
+  .board-container .square:active{
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .winnerLine {
+    border: 6px solid #e1e1e1 !important;
+  }
 }
 @media (max-width: 359px){
   .board-container{
