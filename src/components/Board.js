@@ -31,11 +31,13 @@ class Board extends React.Component {
 
     const opponentMove = this.calculateOpponentMove(i)
     squares[i] = numSquares[i] = this.props.human;
+
     this.setState({
       squares: squares,
       numSquares: numSquares,
       turn: this.state.turn + 1
     });
+
     const winnerAfterSetState = this.calculateWinner(squares)
     if(this.state.turn === 5 && winnerAfterSetState === null)
     {
@@ -146,12 +148,16 @@ class Board extends React.Component {
       numSquares: [0,1,2,3,4,5,6,7,8],
       winner: '',
       turn: 1,
+      winnerLine: []
     }); 
     document.querySelector(".choosePlayer").style.display = "block";
     document.querySelector(".board-container").style.display = "block";
     document.querySelector(".board-container").style.display = "none";
   }
   renderSquare(i) {
+    if(this.state.winnerLine !== []){
+      const [a,b,c] = this.state.winnerLine
+    }
     return (
       <Square 
         id={i}
