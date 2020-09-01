@@ -203,4 +203,15 @@ button{
     line-height: 2rem;
     padding: 1rem 1.2rem;
   }
+  .board-container{
+    width: 300px;
+  }
+  .board-container .square{
+    font-size: 40px;
+    border-radius: 10px;
+    padding-top: 2px;
+    width: 68px;
+    height: 62px;
+    margin: 5px;
+  }
 }
